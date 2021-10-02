@@ -3,6 +3,6 @@
   <img src="https://academy.hpc-russia.ru/files/logo_rsdcongress-rus.png" alt="RussianCDays" align="right" style="float: left; margin-right: 4px;" width = "250" />
   <img src="https://academy.hpc-russia.ru/files/logo_site_ru-08.png" alt="HPCAcademy" align="center" style="float: right; margin-right: 2px;" width = "250" />
 </p>
-<h4> High-performance computing on clusters using NVIDIA graphics accelerators </h4>
+<h4> ISA: High-performance computing on clusters using NVIDIA graphics accelerators </h4>
 <b> Projects and tasks in this repository were carried out during the "International Supercomputing Academy 2021", which takes place with the annual scientific conference "Russian Supercomputing Days". <br>
 Under supervision of Elijah Afanasiev from Scientifical Research and Computing Center of Moscow State University. </b>
