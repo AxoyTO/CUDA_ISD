@@ -1,0 +1,11 @@
+source /polusfs/setenv/setup.SMPI
+#BSUB -n 1
+#BSUB -W 0:15
+#BSUB -o tmp.%J.out
+#BSUB -e tmp.%J.err
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -q "normal"
+export OMP_NUM_THREADS=160
+export GOMP_CPU_AFFINITY=0-159:8
+
+python ./submit_result.py

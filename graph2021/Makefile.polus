@@ -1,0 +1,57 @@
+# Computation mode
+# USE_GPU = true
+
+# Platform dependent paths
+# Lomonosov
+CXX = g++
+CUDA_DIR = /usr/local/cuda-9.1/
+CUDA_COMPILER = $(CUDA_DIR)/bin/nvcc
+
+# Include paths...
+Include_Path = -I /usr/local/cuda-9.1/include
+
+# Library paths...
+Libraries = -fopenmp
+
+Library_Path = -L $(CUDA_DIR)/lib -L $(CUDA_DIR)/lib64
+Libraries += -lcudart -lcudadevrt -lnvgraph
+
+# CPU Compiler flags...
+CXXFLAGS = -O3 -w -m64 -std=c++11 -fopenmp -fpermissive
+CUDAFLAGS = -O3 -Xptxas -dlcm=cg -Wno-deprecated-gpu-targets
+
+.DEFAULT_GOAL := all
+
+##########
+# binaries
+##########
+
+all: bfs
+
+bfs: create_folders bfs.o bfs_gpu.o
+	$(CXX) object_files/bfs.o object_files/bfs_gpu.o $(Library_Path) $(Libraries) $(LDFLAGS) -o ./bin/bfs
+
+create_folders:
+	-mkdir -p ./bin
+	-mkdir -p ./object_files
+
+##################
+# CPP sample files
+##################
+
+bfs.o: bfs.cpp
+	$(CXX) $(CXXFLAGS) $(Include_Path) -c bfs.cpp -o object_files/bfs.o
+
+#################
+# CUDA operations
+#################
+
+bfs_gpu.o: bfs_gpu.cu
+	$(CUDA_COMPILER) $(CUDAFLAGS) $(Include_Path) -arch=sm_50 -c bfs_gpu.cu -o object_files/bfs_gpu.o
+
+#############
+# File system
+#############
+
+clean:
+	-rm bin/bfs

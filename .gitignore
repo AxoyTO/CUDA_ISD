@@ -1,3 +1,15 @@
 #Samples
 /v11.3/*
 /v11.4/*
+
+#Files of some certain types
+*.pdf
+*.gif
+*.json
+*.out
+
+#NVVP Files
+NVVP_Workspace
+
+#Settings & Downloadables
+Settings
