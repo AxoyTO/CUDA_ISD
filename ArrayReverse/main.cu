@@ -1,3 +1,5 @@
+// Array reversing in CUDA using shared memory.
+
 #include <cuda.h>
 #include <cuda_runtime.h>
 #include <device_launch_parameters.h>
@@ -12,11 +14,8 @@ __global__ void reverseKernel(float* A, int N) {
     extern __shared__ float B[];
     int r = N - i - 1;
     B[i] = A[i];
-    // printf("i = %d | A[%d] = %.1f | B[%d] = %.1f\n", i, i, A[i], i, B[i]);
     __syncthreads();
     A[i] = B[r];
-    // printf("\n");
-    // printf("i = %d | A[%d] = %.1f | B[%d] = %.1f\n", i, i, A[i], i, B[i]);
   }
 }
 
